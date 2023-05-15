@@ -15,13 +15,9 @@ function LoginArea() {
               <form action="#" className="contact-form">
                 <div className="form-grp">
                   <label htmlFor="name">
-                    Username <span>*</span>
+                    Email <span>*</span>
                   </label>
-                  <input
-                    type="text"
-                    id="name"
-                    placeholder="Enter your username"
-                  />
+                  <input type="text" id="name" placeholder="Enter your Email" />
                 </div>
                 <div className="form-grp">
                   <label htmlFor="email">

@@ -16,6 +16,7 @@ import Shop from "./pages/Shop";
 import ShopDetails from "./pages/ShopDetails";
 import LogIn from "./pages/LogIn";
 import $ from "jquery";
+import SignOut from "./pages/SignOut";
 
 function App() {
   useEffect(() => {
@@ -43,6 +44,7 @@ function App() {
         <Route path="shop" element={<Shop />} />
         <Route path="shop-details" element={<ShopDetails />} />
         <Route path="login" element={<LogIn />} />
+        <Route path="signout" element={<SignOut />} />
       </Routes>
     </div>
   );
