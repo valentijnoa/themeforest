@@ -17,6 +17,7 @@ import ShopDetails from "./pages/ShopDetails";
 import LogIn from "./pages/LogIn";
 import $ from "jquery";
 import SignOut from "./pages/SignOut";
+import { AuthProvider } from "./Auth";
 
 function App() {
   useEffect(() => {
@@ -31,7 +32,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<IndexOne />} />
+        <Route exact path="/" element={<IndexOne />} />
         <Route path="index-2" element={<IndexTwo />} />
         <Route path="index-3" element={<IndexThree />} />
         <Route path="about-us" element={<AboutUs />} />
@@ -44,7 +45,14 @@ function App() {
         <Route path="shop" element={<Shop />} />
         <Route path="shop-details" element={<ShopDetails />} />
         <Route path="login" element={<LogIn />} />
-        <Route path="signout" element={<SignOut />} />
+        <Route
+          path="signout"
+          element={
+            <AuthProvider>
+              <SignOut />
+            </AuthProvider>
+          }
+        />
       </Routes>
     </div>
   );
