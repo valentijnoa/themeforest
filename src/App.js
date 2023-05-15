@@ -16,8 +16,6 @@ import Shop from "./pages/Shop";
 import ShopDetails from "./pages/ShopDetails";
 import $ from "jquery";
 
-//test
-
 function App() {
   useEffect(() => {
     function preloader() {
