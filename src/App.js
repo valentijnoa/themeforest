@@ -14,6 +14,7 @@ import MatchSingle from "./pages/MatchSingle";
 import Squad from "./pages/Squad";
 import Shop from "./pages/Shop";
 import ShopDetails from "./pages/ShopDetails";
+import LogIn from "./pages/LogIn";
 import $ from "jquery";
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
         <Route path="our-squad" element={<Squad />} />
         <Route path="shop" element={<Shop />} />
         <Route path="shop-details" element={<ShopDetails />} />
+        <Route path="login" element={<LogIn />} />
       </Routes>
     </div>
   );

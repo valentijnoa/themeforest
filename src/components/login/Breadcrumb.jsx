@@ -9,7 +9,7 @@ function Breadcrumb() {
             <div className="row align-items-center">
               <div className="col-md-6">
                 <div className="breadcrumb-content">
-                  <h2 className="title">CONTACT US</h2>
+                  <h2 className="title">LOG IN</h2>
                   <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">
                       <li className="breadcrumb-item">
@@ -19,7 +19,7 @@ function Breadcrumb() {
                         className="breadcrumb-item active"
                         aria-current="page"
                       >
-                        CONTACT US
+                        LOG IN
                       </li>
                     </ol>
                   </nav>
