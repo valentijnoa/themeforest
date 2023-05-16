@@ -18,6 +18,8 @@ import LogIn from "./pages/LogIn";
 import $ from "jquery";
 import SignOut from "./pages/SignOut";
 import { AuthProvider } from "./Auth";
+import PrivateRoute from "./PrivateRoute";
+import SignUp from "./pages/SignUp";
 
 function App() {
   useEffect(() => {
@@ -45,6 +47,7 @@ function App() {
         <Route path="shop" element={<Shop />} />
         <Route path="shop-details" element={<ShopDetails />} />
         <Route path="login" element={<LogIn />} />
+        <Route path="signup" element={<SignUp />} />
         <Route
           path="signout"
           element={
