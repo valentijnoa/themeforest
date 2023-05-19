@@ -1,30 +1,21 @@
-import React, { useCallback, useContext } from "react";
-import withRouter from "../../withRouter";
-import { Navigate } from "react-router";
-import app from "../../firebase";
-import { AuthContext } from "../../Auth";
+import React, { useState } from "react";
+import { auth } from "../../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
-const LoginArea = ({ history }) => {
-  const handleLogin = useCallback(
-    async (event) => {
-      event.preventDefault();
-      const { email, password } = event.target.elements;
+const LoginArea = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-      try {
-        await app
-          .auth()
-          .signInWithEmailAndPassword(email.value, password.value);
-        history.push("/");
-      } catch (error) {
-        alert(error);
-      }
-    },
-    [history]
-  );
-  const { currentUser } = useContext(AuthContext);
-  if (currentUser) {
-    return <Navigate to="/" />;
-  }
+  const loginArea = (e) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log(userCredential);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <section className="contact-area black-bg">
@@ -34,25 +25,31 @@ const LoginArea = ({ history }) => {
             <div className="contact-wrap">
               <div className="contact-title">
                 <h2 className="title">
-                  <span>Welcome back</span>LogIn Account
+                  <span>Welcome back</span>Login to your account
                 </h2>
-                <form onSubmit={handleLogin} classname="contact-form">
+                <form onSubmit={loginArea} classname="contact-form">
                   <div className="form-grp">
                     <label htmlFor="name">
                       Email <span>*</span>
                     </label>
                     <input
                       name="email"
-                      id="name"
                       type="email"
-                      placeholder="Email"
+                      placeholder="Enter your email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                   <div className="form-grp">
                     <label htmlFor="email">
                       Password <span>*</span>
                     </label>
-                    <input type="password" id="email" placeholder="Password" />
+                    <input
+                      type="password"
+                      placeholder="Enter your password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
                   </div>
                   <button type="submit" className="btn">
                     Login
@@ -66,45 +63,5 @@ const LoginArea = ({ history }) => {
     </section>
   );
 };
-// function LoginArea() {
-//   return (
-//     <section className="contact-area black-bg">
-//       <div className="container">
-//         <div className="row justify-content-center">
-//           <div className="col-lg-7">
-//             <div className="contact-wrap">
-//               <div className="contact-title">
-//                 <h2 className="title">
-//                   <span>Welcome back</span>LogIn Account
-//                 </h2>
-//               </div>
-//               <form action="#" className="contact-form">
-//                 <div className="form-grp">
-//                   <label htmlFor="name">
-//                     Email <span>*</span>
-//                   </label>
-//                   <input type="text" id="name" placeholder="Enter your Email" />
-//                 </div>
-//                 <div className="form-grp">
-//                   <label htmlFor="email">
-//                     Password <span>*</span>
-//                   </label>
-//                   <input
-//                     type="email"
-//                     id="email"
-//                     placeholder="Enter your password"
-//                   />
-//                 </div>
-//                 <button type="submit" className="btn">
-//                   Login
-//                 </button>
-//               </form>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
 
-export default withRouter(LoginArea);
+export default LoginArea;

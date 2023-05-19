@@ -1,23 +1,21 @@
-import React, { useCallback } from "react";
-import withRouter from "../../withRouter";
-import app from "../../firebase";
+import React, { useState } from "react";
+import { auth } from "../../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
-const SignupArea = ({ history }) => {
-  const handleSignUp = useCallback(
-    async (event) => {
-      event.preventDefault();
-      const { email, password } = event.target.elements;
-      try {
-        await app
-          .auth()
-          .createUserWithEmailAndPassword(email.value, password.value);
-        history.push("/");
-      } catch (error) {
-        alert(error);
-      }
-    },
-    [history]
-  );
+const SignupArea = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const signupArea = (e) => {
+    e.preventDefault();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log(userCredential);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <section className="contact-area black-bg">
@@ -26,37 +24,36 @@ const SignupArea = ({ history }) => {
           <div className="col-lg-7">
             <div className="contact-wrap">
               <div className="contact-title">
-                <h2 className="title">
-                  <span>Sign Up</span>
-                </h2>
-              </div>
-              <form onSubmit={handleSignUp} classname="contact-form">
-                <div className="form-grp">
-                  <label>
-                    Email<span>*</span>
+                <h2 className="title">Create account</h2>
+                <form onSubmit={signupArea} classname="contact-form">
+                  <div className="form-grp">
+                    <label>
+                      Email <span>*</span>
+                    </label>
                     <input
                       name="email"
-                      id="name"
                       type="email"
-                      placeholder="Email"
+                      placeholder="Enter your email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
-                  </label>
-                </div>
-                <div className="form-grp">
-                  <label>
-                    Password<span>*</span>
+                  </div>
+                  <div className="form-grp">
+                    <label>
+                      Password <span>*</span>
+                    </label>
                     <input
-                      name="password"
-                      id="email"
                       type="password"
-                      placeholder="Password"
+                      placeholder="Enter your password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                     />
-                  </label>
-                </div>
-                <button className="btn" type="submit">
-                  Sign Up
-                </button>
-              </form>
+                  </div>
+                  <button type="submit" className="btn">
+                    Signup
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
@@ -64,4 +61,4 @@ const SignupArea = ({ history }) => {
     </section>
   );
 };
-export default withRouter(SignupArea);
+export default SignupArea;
