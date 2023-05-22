@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { Routes, Route, useNavigate } from "react-router";
+import Auth from "../../Auth";
 
 const LoginArea = () => {
   const [email, setEmail] = useState("");
@@ -15,7 +17,14 @@ const LoginArea = () => {
       .catch((error) => {
         console.log(error);
       });
+    navigate("/auth");
   };
+
+  const navigate = useNavigate();
+
+  // const navigateToAuth = () => {
+  //   navigate("/auth");
+  // };
 
   return (
     <section className="contact-area black-bg">
@@ -60,6 +69,9 @@ const LoginArea = () => {
           </div>
         </div>
       </div>
+      <Routes>
+        <Route path="/auth" element={<Auth />} />
+      </Routes>
     </section>
   );
 };

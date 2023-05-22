@@ -18,6 +18,7 @@ import LogIn from "./pages/LogIn";
 import $ from "jquery";
 import SignUp from "./pages/SignUp";
 import Auth from "./Auth";
+import FetchData from "./FetchData";
 
 function App() {
   useEffect(() => {
@@ -47,6 +48,7 @@ function App() {
         <Route path="login" element={<LogIn />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="*" element={<Auth />} />
+        <Route path="fetchdata" element={<FetchData />} />
       </Routes>
     </div>
   );
