@@ -22,9 +22,9 @@ const LoginArea = () => {
 
   const navigate = useNavigate();
 
-  // const navigateToAuth = () => {
-  //   navigate("/auth");
-  // };
+  const navigateToSignup = () => {
+    navigate("/signup");
+  };
 
   return (
     <section className="contact-area black-bg">
@@ -62,6 +62,10 @@ const LoginArea = () => {
                   </div>
                   <button type="submit" className="btn">
                     Login
+                  </button>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <button onClick={navigateToSignup} className="btn">
+                    Signup
                   </button>
                 </form>
               </div>
